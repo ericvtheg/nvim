@@ -36,7 +36,7 @@ local plugins = {
     config = function()
       require("better_escape").setup()
     end,
-  },
+},
 
   {
     "stevearc/conform.nvim",
@@ -46,9 +46,23 @@ local plugins = {
       require "custom.configs.conform"
     end,
   },
+  
   {
-    "tpope/vim-fugitive"
+    "tpope/vim-fugitive",
+    lazy = false
+  },
+
+  {
+    "kdheepak/lazygit.nvim",
+    	cmd = {
+    		"LazyGit",
+    		"LazyGitConfig",
+    		"LazyGitCurrentFile",
+    		"LazyGitFilter",
+    		"LazyGitFilterCurrentFile",
+    	},
   }
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
