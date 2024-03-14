@@ -12,6 +12,8 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
+    "terraform",
+    "prisma"
   },
   indent = {
     enable = true,
@@ -45,6 +47,9 @@ M.mason = {
 
     -- shell stuff
     "shfmt",
+
+    -- prisma
+    "prisma-language-server"
   },
 }
 
