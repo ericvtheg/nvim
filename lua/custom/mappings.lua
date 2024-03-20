@@ -19,15 +19,29 @@ M.general = {
       end,
       "Enter git interface (LazyGit)",
     },
+    ["<C-s>"] = {
+      function()
+        local ft = vim.api.nvim_buf_get_option(0, 'filetype')
+        if ft == 'javascript' or ft == 'typescript' then
+         vim.cmd("EslintFixAll")
+        end
+        vim.cmd("update")
+      end,
+      "lint and save file",
+    },
   },
   i = {
     -- add Ctrl+s mapping to exit insert mode and save file
     ["<C-s>"] = {
       function()
-        vim.cmd("update")
         vim.api.nvim_input("<Esc>")
+        local ft = vim.api.nvim_buf_get_option(0, 'filetype')
+        if ft == 'javascript' or ft == 'typescript' then
+         vim.cmd("EslintFixAll")
+        end
+        vim.cmd("update")
       end,
-      "exit insert mode and save file",
+      "exit insert mode, lint, and save file",
     },
   },
   v = {
