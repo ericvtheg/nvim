@@ -56,7 +56,9 @@ M.mason = {
     "docker-compose-language-service",
 
     -- linting stuff
-    "eslint-lsp"
+    "eslint-lsp",
+
+    "json-lsp"
   },
 }
 
