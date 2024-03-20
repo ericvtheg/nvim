@@ -37,7 +37,7 @@ M.mason = {
     "prettier",
 
     -- terraform stuff
-    "terraform-ls",
+    "terraformls",
     "tflint",
     "tfsec",
 
