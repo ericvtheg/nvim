@@ -58,7 +58,10 @@ M.mason = {
     -- linting stuff
     "eslint-lsp",
 
-    "json-lsp"
+    "json-lsp",
+
+    "yaml-language-server",
+    "tailwindcss-language-server"
   },
 }
 

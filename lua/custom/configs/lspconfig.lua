@@ -12,9 +12,11 @@ local servers = {
   "terraformls",
   "prismals",
   "dockerls",
-  "docker_compose_language_server",
+  "docker_compose_language_service",
   "eslint",
   "jsonls",
+  "yamlls",
+  "tailwindcss"
 }
 
 for _, lsp in ipairs(servers) do
