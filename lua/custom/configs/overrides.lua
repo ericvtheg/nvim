@@ -49,7 +49,14 @@ M.mason = {
     "shfmt",
 
     -- prisma
-    "prisma-language-server"
+    "prisma-language-server",
+
+    -- docker
+    "dockerfile-language-server",
+    "docker-compose-language-service",
+
+    -- linting stuff
+    "eslint-lsp"
   },
 }
 
