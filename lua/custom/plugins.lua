@@ -58,14 +58,18 @@ local plugins = {
   },
 
   {
-    "rcarriga/nvim-notify"
+    "rcarriga/nvim-notify",
+    lazy = false,
+    config = function()
+      vim.notify = require("notify")
+    end
   },
   {
     "dmmulroy/tsc.nvim",
     cmd = "TSC",
-     config = function()
-        require('tsc').setup({})
-     end,
+    config = function()
+      require('tsc').setup({})
+    end,
   }
 
   -- To make a plugin not be loaded
