@@ -46,12 +46,6 @@ local plugins = {
       require "custom.configs.conform"
     end,
   },
-
-  {
-    "tpope/vim-fugitive",
-    lazy = false
-  },
-
   {
     "kdheepak/lazygit.nvim",
     	cmd = {
