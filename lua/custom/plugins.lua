@@ -55,6 +55,17 @@ local plugins = {
     		"LazyGitFilter",
     		"LazyGitFilterCurrentFile",
     	},
+  },
+
+  {
+    "rcarriga/nvim-notify"
+  },
+  {
+    "dmmulroy/tsc.nvim",
+    cmd = "TSC",
+     config = function()
+        require('tsc').setup({})
+     end,
   }
 
   -- To make a plugin not be loaded
