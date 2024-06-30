@@ -22,8 +22,10 @@ M.general = {
     ["<C-s>"] = {
       function()
         local ft = vim.api.nvim_buf_get_option(0, 'filetype')
-        if ft == 'javascript' or ft == 'typescript' then
-         vim.cmd("EslintFixAll")
+        if ft == 'javascript' or ft == 'typescript' or ft == 'typescriptreact' then
+          pcall(function()
+            vim.cmd("EslintFixAll")
+          end)
         end
         vim.cmd("update")
       end,
@@ -36,8 +38,10 @@ M.general = {
       function()
         vim.api.nvim_input("<Esc>")
         local ft = vim.api.nvim_buf_get_option(0, 'filetype')
-        if ft == 'javascript' or ft == 'typescript' then
-         vim.cmd("EslintFixAll")
+        if ft == 'javascript' or ft == 'typescript' or ft == 'typescriptreact' then
+          pcall(function()
+            vim.cmd("EslintFixAll")
+          end)
         end
         vim.cmd("update")
       end,

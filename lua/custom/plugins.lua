@@ -70,7 +70,11 @@ local plugins = {
     config = function()
       require('tsc').setup({})
     end,
-  }
+  },
+  -- {
+  --   "prettier/vim-prettier",
+  --   lazy = false,
+  -- }
 
   -- To make a plugin not be loaded
   -- {
