@@ -1,15 +1,3 @@
--- Map Ctrl+s to save in normal mode
-vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-
--- Map Ctrl+s to save in insert mode
-vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
-
--- Map Ctrl+s to save in visual mode
-vim.api.nvim_set_keymap('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
-
--- Map Ctrl+s to save in command-line mode
-vim.api.nvim_set_keymap('c', '<C-s>', '<C-c>:w<CR>', { noremap = true, silent = true })
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -87,6 +75,12 @@ vim.opt.scrolloff = 10
 vim.keymap.set('n', '<leader>gi', function()
   vim.cmd 'LazyGit'
 end, { desc = 'Open [G]it [I]nterface', noremap = true })
+
+-- Map Ctrl+s to save
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
+vim.keymap.set('c', '<C-s>', '<C-c>:w<CR>', { noremap = true, silent = true })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
