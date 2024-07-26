@@ -1,3 +1,15 @@
+-- Set the default tab width to 2 spaces
+vim.o.tabstop = 2
+
+-- Use spaces instead of tabs
+vim.o.expandtab = true
+
+-- Set the number of spaces for each indentation level
+vim.o.shiftwidth = 2
+
+-- Set the number of spaces to use for auto-indentation
+vim.o.softtabstop = 2
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -75,6 +87,11 @@ vim.opt.scrolloff = 10
 vim.keymap.set('n', '<leader>gi', function()
   vim.cmd 'LazyGit'
 end, { desc = 'Open [G]it [I]nterface', noremap = true })
+
+-- prev buffer
+vim.keymap.set('n', '<leader>bp', function()
+  vim.cmd 'b#'
+end, { desc = '[B]uffer [P]rev', noremap = true })
 
 -- Map Ctrl+s to save
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
@@ -214,6 +231,7 @@ require('lazy').setup({
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+        ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
