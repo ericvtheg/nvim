@@ -90,7 +90,7 @@ end, { desc = 'Open [G]it [I]nterface', noremap = true })
 
 -- Buffers
 
-local buffer_history_index = 1
+local buffer_history_index = 0
 
 vim.keymap.set('n', '<leader>bp', function()
   local buffers = vim.fn.getbufinfo { buflisted = 1 }
