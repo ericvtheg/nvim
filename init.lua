@@ -89,9 +89,26 @@ vim.keymap.set('n', '<leader>gi', function()
 end, { desc = 'Open [G]it [I]nterface', noremap = true })
 
 -- Buffers
+
+local buffer_history_index = 1
+
 vim.keymap.set('n', '<leader>bp', function()
-  vim.cmd 'b#'
+  local buffers = vim.fn.getbufinfo { buflisted = 1 }
+  if #buffers > 1 then
+    buffer_history_index = ((buffer_history_index - 2) % #buffers) + 1
+    local buf_to_switch = buffers[buffer_history_index].bufnr
+    vim.api.nvim_set_current_buf(buf_to_switch)
+  end
 end, { desc = '[B]uffer [P]rev', noremap = true })
+
+vim.keymap.set('n', '<leader>bn', function()
+  local buffers = vim.fn.getbufinfo { buflisted = 1 }
+  if #buffers > 1 then
+    buffer_history_index = (buffer_history_index % #buffers) + 1
+    local buf_to_switch = buffers[buffer_history_index].bufnr
+    vim.api.nvim_set_current_buf(buf_to_switch)
+  end
+end, { desc = '[B]uffer [N]ext', noremap = true })
 
 vim.keymap.set('n', '<leader>bx', function()
   vim.cmd 'bd'
