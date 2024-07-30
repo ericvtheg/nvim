@@ -88,10 +88,14 @@ vim.keymap.set('n', '<leader>gi', function()
   vim.cmd 'LazyGit'
 end, { desc = 'Open [G]it [I]nterface', noremap = true })
 
--- prev buffer
+-- Buffers
 vim.keymap.set('n', '<leader>bp', function()
   vim.cmd 'b#'
 end, { desc = '[B]uffer [P]rev', noremap = true })
+
+vim.keymap.set('n', '<leader>bx', function()
+  vim.cmd 'bd'
+end, { desc = '[B]uffer Close', noremap = true })
 
 -- Map Ctrl+s to save
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
