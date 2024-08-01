@@ -90,12 +90,11 @@ end, { desc = 'Open [G]it [I]nterface', noremap = true })
 
 -- Buffers
 
-local buffer_history_index = 0
-
+local buffer_history_index = 1
 vim.keymap.set('n', '<leader>bp', function()
-  local buffers = vim.fn.getbufinfo { buflisted = 1 }
+  local buffers = vim.fn.reverse(vim.fn.getbufinfo { buflisted = 1 })
   if #buffers > 1 then
-    buffer_history_index = ((buffer_history_index - 2) % #buffers) + 1
+    buffer_history_index = (buffer_history_index % #buffers) + 1
     local buf_to_switch = buffers[buffer_history_index].bufnr
     vim.api.nvim_set_current_buf(buf_to_switch)
   end
