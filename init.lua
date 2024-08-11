@@ -43,6 +43,8 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
+vim.opt.briopt = 'shift:2'
+vim.opt.linebreak = true
 
 -- Save undo history
 vim.opt.undofile = true
@@ -82,6 +84,8 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set('n', 'j', 'gj', { noremap = true })
+vim.keymap.set('n', 'k', 'gk', { noremap = true })
 
 -- LazyGit
 vim.keymap.set('n', '<leader>gi', function()
