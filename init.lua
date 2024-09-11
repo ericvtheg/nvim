@@ -102,10 +102,6 @@ vim.keymap.set('n', '<leader>bp', function()
   vim.cmd 'b#'
 end, { desc = '[B]uffer [P]rev', noremap = true })
 
-vim.keymap.set('n', '<leader>bx', function()
-  vim.cmd 'bd'
-end, { desc = '[B]uffer Close', noremap = true })
-
 -- Add this new keymap to close all buffers
 vim.keymap.set('n', '<leader>bX', function()
   vim.cmd '%bd|e#|bd#'
