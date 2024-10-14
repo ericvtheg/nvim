@@ -131,11 +131,45 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- Terminal toggle function
+vim.api.nvim_set_keymap('t', '<C-n>', [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
+
+local function ToggleTerminal()
+  -- Find a terminal buffer
+  local term_bufnr = nil
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buftype == 'terminal' then
+      term_bufnr = buf
+      break
+    end
+  end
+
+  if term_bufnr then
+    -- Terminal buffer exists, toggle its visibility
+    local term_win = vim.fn.bufwinnr(term_bufnr)
+    if term_win ~= -1 then
+      -- Terminal is visible, close it
+      vim.api.nvim_win_close(vim.fn.win_getid(term_win), true)
+    else
+      -- Terminal exists but is not visible, show it
+      vim.cmd 'botright split'
+      vim.api.nvim_win_set_buf(0, term_bufnr)
+      vim.cmd 'resize 15'
+    end
+  else
+    -- No terminal buffer exists, create a new one
+    vim.cmd 'botright 15split | terminal'
+    term_bufnr = vim.api.nvim_get_current_buf()
+    -- Set buffer-local options
+    vim.api.nvim_buf_set_option(term_bufnr, 'buflisted', false)
+    vim.api.nvim_buf_set_option(term_bufnr, 'filetype', 'term')
+  end
+end
+
+-- Set up keymappings
+vim.keymap.set('n', '<leader>tt', ToggleTerminal, { noremap = true, silent = true, desc = '[T]oggle [T]erminal' })
+vim.keymap.set('t', '<leader>tt', '<C-\\><C-n>:lua ToggleTerminal()<CR>', { noremap = true, silent = true, desc = '[T]oggle [T]erminal' })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
