@@ -10,6 +10,9 @@ vim.o.shiftwidth = 2
 -- Set the number of spaces to use for auto-indentation
 vim.o.softtabstop = 2
 
+-- views can only be fully collapsed with the global statusline (for avante nvim)
+vim.opt.laststatus = 3
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
