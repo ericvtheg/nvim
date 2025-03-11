@@ -5,10 +5,6 @@
 return {
   'jesseduffield/lazygit',
   'kdheepak/lazygit.nvim',
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false
-  },
   cmd = {
     'LazyGit',
     'LazyGitConfig',
