@@ -20,6 +20,8 @@ return {
           ['\\'] = 'close_window',
         },
       },
+      group_empty_dirs = true,
+      scan_mode = 'deep',
     },
   },
 }
