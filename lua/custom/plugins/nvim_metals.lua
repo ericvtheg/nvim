@@ -5,24 +5,6 @@ return {
     'nvim-telescope/telescope.nvim', -- Make sure this is included since your bindings use it
   },
   ft = { 'scala', 'sbt', 'java' },
-  opts = function()
-    local metals_config = require('metals').bare_config()
-
-    metals_config.settings = {}
-
-    metals_config.on_attach = function(client, bufnr)
-      -- Add any Metals-specific keybindings
-      local map = function(keys, func, desc)
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'Metals: ' .. desc })
-      end
-
-      map('<leader>mt', require('metals').toggle_tree_view, 'Toggle Tree View')
-      map('<leader>mc', require('metals').commands, 'Metals Commands')
-      -- Add any other Metals-specific bindings
-    end
-
-    return metals_config
-  end,
   config = function(self, metals_config)
     local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true })
     vim.api.nvim_create_autocmd('FileType', {
