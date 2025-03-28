@@ -371,7 +371,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Find existing [B]uffers' })
       vim.keymap.set('n', '<leader>sg', function()
         builtin.live_grep {
-          additional_args = { '--glob', '!package-lock.json' },
+          additional_args = { '--glob', '!package-lock.json', '--glob', '!yarn.lock' },
         }
       end, { desc = '[S]earch by [G]rep' })
 
