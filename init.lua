@@ -121,10 +121,23 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+-- Buffer diagnostics
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.goto_prev { wrap = false }
+end, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.goto_next { wrap = false }
+end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- Workspace diagnostics
+vim.keymap.set('n', '<leader>wa', vim.diagnostic.setqflist, { desc = 'Show [W]orkspace [A]ll diagnostics' })
+vim.keymap.set('n', '<leader>we', function()
+  vim.diagnostic.setqflist { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Show [W]orkspace [E]rror diagnostics' })
+vim.keymap.set('n', '<leader>ww', function()
+  vim.diagnostic.setqflist { severity = vim.diagnostic.severity.WARN }
+end, { desc = 'Show [W]orkspace [W]arning diagnostics' })
 
 -- Terminal toggle function
 vim.api.nvim_set_keymap('t', '<C-n>', [[<C-\><C-n>]], { noremap = true, silent = true })
@@ -267,7 +280,7 @@ require('lazy').setup({
       -- Document existing key chains
       require('which-key').register {
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
@@ -364,7 +377,6 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[ ] search files' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
@@ -480,7 +492,7 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>bs', require('telescope.builtin').lsp_document_symbols, '[B]uffer [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
@@ -497,10 +509,41 @@ require('lazy').setup({
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
+          map('<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+          -- Example mappings for usage with nvim-dap. If you don't use that, you can
+          -- skip these
+          vim.keymap.set('n', '<leader>dc', function()
+            require('dap').continue()
+          end, { desc = 'DAP: Continue' })
+
+          vim.keymap.set('n', '<leader>dr', function()
+            require('dap').repl.toggle()
+          end, { desc = 'DAP: Toggle REPL' })
+
+          vim.keymap.set('n', '<leader>dK', function()
+            require('dap.ui.widgets').hover()
+          end, { desc = 'DAP: Hover variables' })
+
+          vim.keymap.set('n', '<leader>dt', function()
+            require('dap').toggle_breakpoint()
+          end, { desc = 'DAP: Toggle breakpoint' })
+
+          vim.keymap.set('n', '<leader>dso', function()
+            require('dap').step_over()
+          end, { desc = 'DAP: Step over' })
+
+          vim.keymap.set('n', '<leader>dsi', function()
+            require('dap').step_into()
+          end, { desc = 'DAP: Step into' })
+
+          vim.keymap.set('n', '<leader>dl', function()
+            require('dap').run_last()
+          end, { desc = 'DAP: Run last' })
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
