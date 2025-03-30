@@ -341,7 +341,12 @@ require('lazy').setup({
         --
         defaults = {
           path_display = { 'filename_first', 'smart' },
-          mappings = {},
+          mappings = {
+            i = {
+              ['<esc>'] = require('telescope.actions').close,
+              ['<C-n>'] = { '<esc>', type = 'command' },
+            },
+          },
         },
         --  pickers = {}
         extensions = {
