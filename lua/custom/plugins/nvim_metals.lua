@@ -20,10 +20,9 @@ return {
           {
             type = 'scala',
             request = 'launch',
-            name = 'RunOrTest',
+            name = 'Run or Test Target',
             metals = {
               runType = 'runOrTestFile',
-              --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
             },
           },
           {
@@ -33,6 +32,14 @@ return {
             metals = {
               runType = 'testTarget',
             },
+          },
+          {
+            type = 'scala',
+            request = 'attach',
+            name = 'Attach to Localhost',
+            hostName = 'localhost',
+            port = 5005,
+            buildTarget = 'root',
           },
         }
       end,
