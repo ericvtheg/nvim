@@ -90,6 +90,8 @@ vim.opt.autoread = true
 -- disable neovim generating a swapfile and showing the error
 vim.opt.swapfile = false
 
+vim.opt_global.shortmess:remove 'F'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', 'j', 'gj', { noremap = true })
@@ -505,6 +507,7 @@ require('lazy').setup({
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map('<leader>cl', vim.lsp.codelens.run, '[C]ode [L]ens')
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
