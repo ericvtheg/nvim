@@ -1,0 +1,2 @@
+* lazy-git not opening file as a buffer in nvim
+better ability to look at history of buffers opened, yes I can ctrl o to go backward but I can't go forward
