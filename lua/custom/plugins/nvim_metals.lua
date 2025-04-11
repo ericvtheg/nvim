@@ -1,5 +1,4 @@
-local map = vim.keymap.set
-local fn = vim.fn
+local Path = require 'plenary.path'
 
 return {
   'scalameta/nvim-metals',
@@ -52,6 +51,7 @@ return {
     -- Example of settings
     metals_config.settings = {
       showImplicitArguments = true,
+      fallbackScalaVersion = '2.12.18',
     }
 
     -- *READ THIS*
@@ -65,6 +65,34 @@ return {
     -- any messages from metals. There is more info in the help docs about this
     metals_config.init_options.statusBarProvider = 'off'
 
+    -- Set this to a reasonable value based on your deepest nesting
+    metals_config.find_root_dir_max_project_nesting = 10
+
+    -- Custom root directory finder that prioritizes the current directory
+    metals_config.find_root_dir = function(patterns, startpath)
+      -- First try using the startpath directly if it contains any of the patterns
+      local direct_match = vim.fn.getcwd()
+      for _, pattern in ipairs(patterns) do
+        local target = direct_match .. '/' .. pattern
+        if vim.fn.filereadable(target) == 1 or vim.fn.isdirectory(target) == 1 then
+          return direct_match
+        end
+      end
+
+      -- Fall back to traversing upward if direct match fails
+      local path = Path:new(startpath)
+      for _, parent in ipairs(path:parents()) do
+        for _, pattern in ipairs(patterns) do
+          local target = Path:new(parent, pattern)
+          if target:exists() then
+            return parent
+          end
+        end
+      end
+
+      -- If nothing found, use vim's current working directory
+      return vim.fn.getcwd()
+    end
     -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
     metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities()
 
