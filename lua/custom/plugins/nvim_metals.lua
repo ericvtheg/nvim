@@ -54,15 +54,6 @@ return {
       fallbackScalaVersion = '2.12.18',
     }
 
-    -- *READ THIS*
-    -- I *highly* recommend setting statusBarProvider to either "off" or "on"
-    --
-    -- "off" will enable LSP progress notifications by Metals and you'll need
-    -- to ensure you have a plugin like fidget.nvim installed to handle them.
-    --
-    -- "on" will enable the custom Metals status extension and you *have* to have
-    -- a have settings to capture this in your statusline or else you'll not see
-    -- any messages from metals. There is more info in the help docs about this
     metals_config.init_options.statusBarProvider = 'off'
 
     -- Set this to a reasonable value based on your deepest nesting
