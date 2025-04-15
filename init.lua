@@ -687,26 +687,11 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Use pcall to ensure format_on_save never crashes
-        local ok, result = pcall(function()
-          -- Disable "format_on_save lsp_fallback" for languages that don't
-          -- have a well standardized coding style. You can add additional
-          -- languages here or re-enable it for the disabled ones.
-          local disable_filetypes = { c = true, cpp = true, scala = true }
-          return {
-            timeout_ms = 500,
-            lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-          }
-        end)
-
-        -- If there was an error, return minimal config to prevent crashes
-        if not ok then
-          return { timeout_ms = 500, lsp_fallback = false }
-        end
-
-        return result
-      end,
+      format_on_save = {
+        -- I recommend these options. See :help conform.format for details.
+        lsp_format = 'fallback',
+        timeout_ms = 500,
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
