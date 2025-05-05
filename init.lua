@@ -386,11 +386,16 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Find existing [B]uffers' })
+      vim.keymap.set('n', '<leader>sa', function()
+        builtin.live_grep {
+          additional_args = { '--glob', '!package-lock.json', '--glob', '!yarn.lock' },
+        }
+      end, { desc = '[S]earch [A]ll by Grep' })
       vim.keymap.set('n', '<leader>sg', function()
         builtin.live_grep {
           additional_args = { '--glob', '!package-lock.json', '--glob', '!yarn.lock', '--glob', '!*[sS][pP][eE][cC]*' },
         }
-      end, { desc = '[S]earch by [G]rep' })
+      end, { desc = '[S]earch by [G]rep (filtered)' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
