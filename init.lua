@@ -92,6 +92,11 @@ vim.opt.swapfile = false
 
 vim.opt_global.shortmess:remove 'F'
 
+-- Set GIT_EDITOR to use nvr if Neovim and nvr are available
+if vim.fn.has 'nvim' == 1 and vim.fn.executable 'nvr' == 1 then
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', 'j', 'gj', { noremap = true })
@@ -439,6 +444,8 @@ require('lazy').setup({
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
+      -- require('lspconfig').protols.setup {}
+
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.

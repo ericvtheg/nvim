@@ -1,5 +1,11 @@
 # kickstart.nvim
 
+## Dependencies (added by me)
+
+`pip3 install neovim-remote`
+`lazygit config`
+
+
 ## Introduction
 
 A starting point for Neovim that is:
