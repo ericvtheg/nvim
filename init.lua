@@ -111,7 +111,7 @@ vim.keymap.set('n', '<leader>go', function()
   vim.cmd 'GBrowse'
 end, { desc = '[G]it [O]pen remote', noremap = true })
 
-vim.keymap.set('n', '<leader>go', function()
+vim.keymap.set('n', '<leader>gb', function()
   vim.cmd 'Git blame'
 end, { desc = '[G]it [B]lame', noremap = true })
 
