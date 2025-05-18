@@ -161,39 +161,25 @@ end, { desc = 'Show [W]orkspace [W]arning diagnostics' })
 vim.api.nvim_set_keymap('t', '<C-n>', [[<C-\><C-n>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
-local function ToggleTerminal()
-  -- Find a terminal buffer
-  local term_bufnr = nil
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.bo[buf].buftype == 'terminal' then
-      term_bufnr = buf
-      break
-    end
-  end
-
-  if term_bufnr then
-    -- Terminal buffer exists, toggle its visibility
-    local term_win = vim.fn.bufwinnr(term_bufnr)
-    if term_win ~= -1 then
-      -- Terminal is visible, close it
-      vim.api.nvim_win_close(vim.fn.win_getid(term_win), true)
-    else
-      -- Terminal exists but is not visible, show it
-      vim.cmd 'botright split'
-      vim.api.nvim_win_set_buf(0, term_bufnr)
-      vim.cmd 'resize 15'
-    end
-  else
-    -- No terminal buffer exists, create a new one
-    vim.cmd 'botright 15split | terminal'
-    term_bufnr = vim.api.nvim_get_current_buf()
-    -- Set buffer-local options
-    vim.api.nvim_buf_set_option(term_bufnr, 'buflisted', false)
-    vim.api.nvim_buf_set_option(term_bufnr, 'filetype', 'term')
-  end
-end
-
 -- Set up keymappings
+
+-- Terminal
+
+-- Dedicated terminals with specific IDs
+vim.keymap.set('n', '<leader>tf', function()
+  vim.cmd ':1ToggleTerm direction=float'
+end, { desc = '[t]oggle terminal [f]loat ', noremap = true })
+
+-- Track next terminal ID for new terminals
+local next_term_id = 2
+vim.keymap.set('n', '<leader>th', function()
+  vim.cmd(':' .. next_term_id .. 'ToggleTerm direction=horizontal')
+  next_term_id = next_term_id + 1
+end, { desc = '[t]oggle [h]orizontal terminal', noremap = true })
+
+vim.keymap.set('n', '<leader>tt', function()
+  vim.cmd 'ToggleTermToggleAll'
+end, { desc = '[t]oggle all [t]erminals', noremap = true })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
