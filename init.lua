@@ -49,6 +49,9 @@ vim.opt.breakindent = true
 vim.opt.briopt = 'shift:2'
 vim.opt.linebreak = true
 
+-- Help height
+vim.opt.helpheight = 99999
+
 -- Save undo history
 vim.opt.undofile = true
 
