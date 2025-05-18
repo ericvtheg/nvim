@@ -105,20 +105,20 @@ vim.keymap.set('n', 'k', 'gk', { noremap = true })
 -- Git
 vim.keymap.set('n', '<leader>gi', function()
   vim.cmd 'LazyGit'
-end, { desc = 'Open [G]it [I]nterface', noremap = true })
+end, { desc = 'Open [g]it [i]nterface', noremap = true })
 
 vim.keymap.set('n', '<leader>go', function()
   vim.cmd 'GBrowse'
-end, { desc = '[G]it [O]pen remote', noremap = true })
+end, { desc = '[g]it [o]pen remote', noremap = true })
 
 vim.keymap.set('n', '<leader>gb', function()
   vim.cmd 'Git blame'
-end, { desc = '[G]it [B]lame', noremap = true })
+end, { desc = '[g]it [b]lame', noremap = true })
 
 -- Buffers
 vim.keymap.set('n', '<leader>bp', function()
   vim.cmd 'b#'
-end, { desc = '[B]uffer [P]rev', noremap = true })
+end, { desc = '[b]uffer [p]rev', noremap = true })
 
 -- Add this new keymap to close all buffers
 vim.keymap.set('n', '<leader>bX', function()
