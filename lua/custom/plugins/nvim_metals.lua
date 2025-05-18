@@ -5,44 +5,6 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim', -- Make sure this is included since your bindings use it
-    {
-      'j-hui/fidget.nvim',
-      opts = {},
-    },
-    {
-      'mfussenegger/nvim-dap',
-      config = function(self, opts)
-        -- Debug settings if you're using nvim-dap
-        local dap = require 'dap'
-
-        dap.configurations.scala = {
-          {
-            type = 'scala',
-            request = 'launch',
-            name = 'Run or Test Target',
-            metals = {
-              runType = 'runOrTestFile',
-            },
-          },
-          {
-            type = 'scala',
-            request = 'launch',
-            name = 'Test Target',
-            metals = {
-              runType = 'testTarget',
-            },
-          },
-          {
-            type = 'scala',
-            request = 'attach',
-            name = 'Attach to Localhost',
-            hostName = 'localhost',
-            port = 5005,
-            buildTarget = 'root',
-          },
-        }
-      end,
-    },
   },
   ft = { 'scala', 'sbt', 'java' },
   opts = function()
