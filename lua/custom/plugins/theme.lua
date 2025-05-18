@@ -3,7 +3,7 @@ return {
   lazy = false,
   priority = 1000, -- Make sure to load this before all the other start plugins.
   init = function()
-    vim.cmd.colorscheme 'cyberdream'
+    vim.cmd.colorscheme 'kanagawa-wave'
 
     -- You can configure highlights by doing something like:
     vim.cmd.hi 'Comment gui=none'
@@ -15,5 +15,6 @@ return {
     'sainnhe/gruvbox-material',
     'catppuccin/nvim',
     'rebelot/kanagawa.nvim',
+    'scottmckendry/cyberdream.nvim',
   },
 }
