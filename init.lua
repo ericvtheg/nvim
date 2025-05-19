@@ -177,6 +177,10 @@ vim.keymap.set('n', '<leader>th', function()
   next_term_id = next_term_id + 1
 end, { desc = '[t]oggle [h]orizontal terminal', noremap = true })
 
+vim.keymap.set('v', '<leader>tt', function()
+  vim.cmd 'ToggleTermSendVisualSelection'
+end, { desc = '[t]oggle [t]erminal visual selection', noremap = true })
+
 vim.keymap.set('n', '<leader>tt', function()
   vim.cmd 'ToggleTermToggleAll'
 end, { desc = '[t]oggle all [t]erminals', noremap = true })
