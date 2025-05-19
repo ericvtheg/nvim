@@ -119,9 +119,6 @@ vim.keymap.set('n', '<leader>gb', function()
 end, { desc = '[g]it [b]lame', noremap = true })
 
 -- Buffers
-vim.keymap.set('n', '<leader>bp', function()
-  vim.cmd 'b#'
-end, { desc = '[b]uffer [p]rev', noremap = true })
 
 -- Add this new keymap to close all buffers
 vim.keymap.set('n', '<leader>bX', function()
