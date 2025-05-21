@@ -1,4 +1,0 @@
-* better ability to look at history of buffers opened, yes I can ctrl o to go backward but I can't go forward
-* ability to copy a file path from neo tree
-* find and replace all improvement
-* better organizing of imports, show warning on unused imports in scala
