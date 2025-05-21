@@ -105,6 +105,10 @@ end
 vim.keymap.set('n', 'j', 'gj', { noremap = true })
 vim.keymap.set('n', 'k', 'gk', { noremap = true })
 
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[p]aste' })
+
+vim.keymap.set('n', 'Q', '<nop>')
+
 -- Git
 vim.keymap.set('n', '<leader>gi', function()
   vim.cmd 'LazyGit'
@@ -130,6 +134,7 @@ vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.keymap.set('c', '<C-s>', '<C-c>:w<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>h', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'repalce' })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
