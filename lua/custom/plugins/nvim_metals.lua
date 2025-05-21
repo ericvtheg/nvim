@@ -2,10 +2,6 @@ local Path = require 'plenary.path'
 
 return {
   'scalameta/nvim-metals',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim', -- Make sure this is included since your bindings use it
-  },
   ft = { 'scala', 'sbt', 'java' },
   opts = function()
     local metals_config = require('metals').bare_config()
