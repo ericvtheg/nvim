@@ -6,7 +6,6 @@ return {
   opts = function()
     local metals_config = require('metals').bare_config()
 
-    -- Example of settings
     metals_config.settings = {
       showImplicitArguments = true,
       fallbackScalaVersion = '2.12.18',
