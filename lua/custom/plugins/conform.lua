@@ -2,21 +2,7 @@ return { -- Autoformat
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-  keys = {
-    {
-      '<leader>f',
-      function()
-        local ok, conform = pcall(require, 'conform')
-        if ok then
-          pcall(function()
-            conform.format { async = true, lsp_fallback = true }
-          end)
-        end
-      end,
-      mode = '',
-      desc = '[F]ormat buffer',
-    },
-  },
+  keys = {},
   opts = {
     notify_on_error = false,
     format_on_save = {
