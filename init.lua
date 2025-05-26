@@ -163,6 +163,13 @@ end, { desc = 'Show [W]orkspace [W]arning diagnostics' })
 vim.api.nvim_set_keymap('t', '<C-n>', [[<C-\><C-n>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'prisma',
+  callback = function()
+    vim.cmd 'TSBufEnable highlight'
+  end,
+})
+
 -- Set up keymappings
 
 -- Terminal
