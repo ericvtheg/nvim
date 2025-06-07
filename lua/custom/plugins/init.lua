@@ -5,7 +5,7 @@ return {
     opts = {
       notification = {
         window = {
-          winblend = 0, -- transparency
+          -- winblend = 0, -- transparency
         },
       },
     },
