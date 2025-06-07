@@ -4,6 +4,7 @@
 
 `pip3 install neovim-remote`
 `lazygit config`
+`brew install pngpaste` # for smart png paste
 
 
 ## Introduction
