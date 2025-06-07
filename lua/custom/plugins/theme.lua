@@ -8,8 +8,18 @@ return {
     vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
     vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 
+    -- Show which line your cursor is on
+    vim.opt.cursorline = true
+
     -- You can configure highlights by doing something like:
     vim.cmd.hi 'Comment gui=none'
+
+    vim.opt.cursorlineopt = 'number'
+    -- Get a bright color from your theme
+    local error_hl = vim.api.nvim_get_hl(0, { name = 'Error' })
+    if error_hl.fg then
+      vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = error_hl.fg, bold = true })
+    end
   end,
   -- all color schemes
   dependencies = {
