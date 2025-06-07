@@ -104,6 +104,9 @@ return { -- Autocompletion
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        per_filetype = {
+          codecompanion = { 'codecompanion' },
+        },
       },
     }
   end,
