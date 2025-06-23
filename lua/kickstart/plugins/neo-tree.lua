@@ -14,6 +14,9 @@ return {
     { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
   },
   opts = {
+    window = {
+      position = 'right',
+    },
     filesystem = {
       use_libuv_file_watcher = true, -- use os file watchers
       window = {
