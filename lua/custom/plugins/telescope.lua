@@ -83,7 +83,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { noremap = true, silent = true, desc = '[ ] search files' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', function()
-      builtin.live_grep {
+      builtin.grep_string {
         additional_args = { '--glob', '!package-lock.json', '--glob', '!yarn.lock', '--glob', '!*[sS][pP][eE][cC]*' },
       }
     end, { desc = '[S]earch current [W]ord' })
