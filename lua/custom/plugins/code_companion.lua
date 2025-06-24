@@ -25,8 +25,6 @@ return {
     local is_personal = os.getenv 'PERSONAL_COMPUTER' == 'true'
     local adapter = is_personal and 'anthropic' or 'copilot'
 
-    print(adapter)
-
     return {
       strategies = {
         chat = {
