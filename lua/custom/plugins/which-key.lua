@@ -39,7 +39,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>w_', hidden = true },
       },
-    }
+    },
     -- visual mode
     require('which-key').register({
       { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
