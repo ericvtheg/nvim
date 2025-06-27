@@ -26,6 +26,13 @@ return {
     local adapter = is_personal and 'anthropic' or 'copilot'
 
     return {
+      display = {
+        chat = {
+          window = {
+            width = 0.3,
+          },
+        },
+      },
       strategies = {
         chat = {
           adapter = adapter,
