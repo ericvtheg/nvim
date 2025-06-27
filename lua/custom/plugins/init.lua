@@ -6,6 +6,7 @@ return {
       notification = {
         window = {
           winblend = 0, -- transparency
+          max_height = 3,
         },
       },
     },
