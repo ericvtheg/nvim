@@ -29,7 +29,17 @@ return {
       display = {
         chat = {
           window = {
+            auto_scroll = false,
             width = 0.3,
+          },
+        },
+        display = {
+          diff = {
+            enabled = true,
+            close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+            layout = 'vertical', -- vertical|horizontal split for default provider
+            opts = { 'internal', 'filler', 'closeoff', 'algorithm:patience', 'followwrap', 'linematch:120' },
+            provider = 'mini_diff', -- default|mini_diff
           },
         },
       },
@@ -37,6 +47,14 @@ return {
         chat = {
           adapter = adapter,
           slash_commands = {
+            ['buffer'] = {
+              keymaps = {
+                modes = {
+                  i = '<C-b>',
+                  n = { '<C-b>', 'gb' },
+                },
+              },
+            },
             ['git_files'] = {
               description = 'List git files',
               ---@param chat CodeCompanion.Chat
