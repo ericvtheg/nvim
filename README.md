@@ -6,6 +6,7 @@
 `lazygit config`
 `brew install pngpaste` # for smart png paste
 
+`$ ulimit -n 4096` # neotree would hold too many file descriptors for some repos causing an error
 
 ## Introduction
 
