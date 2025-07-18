@@ -8,7 +8,7 @@ return {
 
     metals_config.settings = {
       showImplicitArguments = true,
-      fallbackScalaVersion = '2.12.18',
+      fallbackScalaVersion = '2.13.14',
     }
 
     metals_config.init_options.statusBarProvider = 'off'
