@@ -5,6 +5,7 @@
 `pip3 install neovim-remote`
 `lazygit config`
 `brew install pngpaste` # for smart png paste
+`:MasonInstall eslint_d@13.1.2` # https://old.reddit.com/r/neovim/comments/1fdpap9/eslint_error_could_not_parse_linter_output_due_to/
 
 `$ ulimit -n 4096` # neotree would hold too many file descriptors for some repos causing an error
 
