@@ -4,5 +4,5 @@ return {
   config = function()
     require('timelapse').setup()
   end,
-  cmd = { 'TimeLapse', 'TimeLapseStop', 'TimeLapsePause' },
+  cmd = { 'TimeLapse', 'TimeLapsePause' },
 }
