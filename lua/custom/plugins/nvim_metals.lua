@@ -9,6 +9,7 @@ return {
     metals_config.settings = {
       showImplicitArguments = true,
       fallbackScalaVersion = '2.13.14',
+      defaultBspToBuildTool = 'sbt',
     }
 
     metals_config.init_options.statusBarProvider = 'off'
