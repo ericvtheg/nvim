@@ -9,7 +9,19 @@ return {
     metals_config.settings = {
       showImplicitArguments = true,
       fallbackScalaVersion = '2.13.14',
-      defaultBspToBuildTool = 'sbt',
+      enableBestEffort = true,
+      inlayHintsOptions = {
+        inferredTypes = true,
+        implicitConversions = true,
+        implicitArguments = true,
+        typeParameters = true,
+        byNameParameters = true,
+        -- Note: 'namedParameters' is often too noisy for many people,
+        namedParameters = true,
+        hintsInPatternMatch = true,
+        hintsInXRayMode = true,
+      },
+      superMethodLensesEnabled = true,
     }
 
     metals_config.init_options.statusBarProvider = 'off'
