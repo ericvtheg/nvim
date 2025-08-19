@@ -22,6 +22,12 @@ return {
       superMethodLensesEnabled = true,
     }
 
+    metals_config.server_properties = {
+      -- Memory allocation for Metals
+      '-Xms2G',
+      '-Xmx6G',
+    }
+
     metals_config.init_options.statusBarProvider = 'off'
 
     -- Set this to a reasonable value based on your deepest nesting
