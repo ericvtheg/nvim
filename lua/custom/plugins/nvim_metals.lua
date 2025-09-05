@@ -7,6 +7,13 @@ return {
     local metals_config = require('metals').bare_config()
 
     metals_config.settings = {
+      excludedPackages = {
+        'akka.actor.typed.javadsl',
+        'com.github.swagger.akka.javadsl',
+        'akka.persistence.journal', -- If you don't directly use this
+        'scala.meta.internal', -- Internal Scala compiler details
+        'org.apache.kafka.common.internals',
+      },
       showImplicitArguments = true,
       fallbackScalaVersion = '2.13.16',
       defaultBspToBuildTool = true,
@@ -73,6 +80,7 @@ return {
       pattern = self.ft,
       callback = function()
         require('metals').initialize_or_attach(metals_config)
+        vim.keymap.set('n', '<leader>mf', '<cmd>MetalsRunScalafix<CR>', { buffer = true, desc = 'Run Metals Scalafix' })
       end,
       group = nvim_metals_group,
     })
