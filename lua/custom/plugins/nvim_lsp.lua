@@ -3,7 +3,7 @@ return { -- LSP Configuration & Plugins
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-    'williamboman/mason-lspconfig.nvim',
+    { 'mason-org/mason-lspconfig.nvim' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -206,12 +206,19 @@ return { -- LSP Configuration & Plugins
             completion = {
               callSnippet = 'Replace',
             },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
+            diagnostics = { disable = { 'missing-fields' }, globals = { 'vim' } },
           },
         },
       },
     }
+
+    -- The following loop will configure each server with the capabilities we defined above.
+    -- This will ensure that all servers have the same base configuration, but also
+    -- allow for server-specific overrides.
+    for server_name, server_config in pairs(servers) do
+      server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
+      require('lspconfig')[server_name].setup(server_config)
+    end
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
@@ -228,18 +235,5 @@ return { -- LSP Configuration & Plugins
       'stylua', -- Used to format Lua code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-    require('mason-lspconfig').setup {
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
   end,
 }
