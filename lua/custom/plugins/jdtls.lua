@@ -7,5 +7,6 @@ return {
   },
   config = function()
     vim.lsp.enable 'jdtls'
+    -- TODO dont always boot up
   end,
 }
