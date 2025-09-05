@@ -2,7 +2,7 @@ local Path = require 'plenary.path'
 
 return {
   'scalameta/nvim-metals',
-  ft = { 'scala', 'sbt', 'java' },
+  ft = { 'scala', 'sbt' },
   opts = function()
     local metals_config = require('metals').bare_config()
 
@@ -81,6 +81,7 @@ return {
       callback = function()
         require('metals').initialize_or_attach(metals_config)
         vim.keymap.set('n', '<leader>mf', '<cmd>MetalsRunScalafix<CR>', { buffer = true, desc = 'Run Metals Scalafix' })
+        vim.keymap.set('n', '<leader>mc', require('telescope').extensions.metals.commands, { buffer = true, desc = '[M]etals [C]ommands' })
       end,
       group = nvim_metals_group,
     })
