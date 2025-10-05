@@ -9,8 +9,8 @@ return {
     require('lint').linters_by_ft = {
       javascript = { 'eslint_d' },
       typescript = { 'eslint_d' },
-      javascriptreact = { 'eslint_d' }, -- for JSX
-      typescriptreact = { 'eslint_d' }, -- for TSX
+      javascriptreact = { 'eslint_d' },
+      typescriptreact = { 'eslint_d' },
     }
 
     -- Set up an autocmd to trigger linting
