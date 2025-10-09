@@ -192,6 +192,13 @@ return { -- LSP Configuration & Plugins
       -- pyright = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+      jdtls = {
+        handlers = {
+          -- By assigning an empty function, you can remove the notifications
+          -- printed to the cmd
+          ['$/progress'] = function(_, result, ctx) end,
+        },
+      },
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
