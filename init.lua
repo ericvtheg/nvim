@@ -175,28 +175,6 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Set up keymappings
 
--- Terminal
-
--- Dedicated terminals with specific IDs
-vim.keymap.set('n', '<leader>tf', function()
-  vim.cmd ':1ToggleTerm direction=float'
-end, { desc = '[t]oggle terminal [f]loat ', noremap = true })
-
--- Track next terminal ID for new terminals
-local next_term_id = 2
-vim.keymap.set('n', '<leader>th', function()
-  vim.cmd(':' .. next_term_id .. 'ToggleTerm direction=horizontal')
-  next_term_id = next_term_id + 1
-end, { desc = '[t]oggle [h]orizontal terminal', noremap = true })
-
-vim.keymap.set('v', '<leader>tt', function()
-  vim.cmd 'ToggleTermSendVisualSelection'
-end, { desc = '[t]oggle [t]erminal visual selection', noremap = true })
-
-vim.keymap.set('n', '<leader>tt', function()
-  vim.cmd 'ToggleTermToggleAll'
-end, { desc = '[t]oggle all [t]erminals', noremap = true })
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
