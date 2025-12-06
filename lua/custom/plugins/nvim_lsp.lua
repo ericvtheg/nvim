@@ -192,8 +192,7 @@ return { -- LSP Configuration & Plugins
       -- pyright = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      -- NOTE: lspconfig expects `tsserver` (mason installs `typescript-language-server`)
-      tsserver = {},
+      ts_ls = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
