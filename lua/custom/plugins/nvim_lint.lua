@@ -13,8 +13,8 @@ return {
       typescriptreact = { 'eslint_d' },
     }
 
-    -- Set up an autocmd to trigger linting
-    vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave' }, {
+    -- Lint after saves or when leaving insert; skip BufRead to avoid stale diagnostics on open
+    vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
       callback = function()
         require('lint').try_lint()
       end,
