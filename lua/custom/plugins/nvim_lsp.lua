@@ -221,6 +221,7 @@ return { -- LSP Configuration & Plugins
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
+      'yamlfmt', -- Used to format YAML files (respects existing style)
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
   end,
