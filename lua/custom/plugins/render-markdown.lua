@@ -1,6 +1,8 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
-  opts = {},
+  opts = {
+    latex = { enabled = false },
+  },
   ft = { 'markdown', 'codecompanion' },
   config = function(_, opts)
     require('render-markdown').setup(opts)

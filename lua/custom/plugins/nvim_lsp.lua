@@ -193,6 +193,7 @@ return { -- LSP Configuration & Plugins
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       ts_ls = {},
+      prismals = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
@@ -213,8 +214,9 @@ return { -- LSP Configuration & Plugins
     -- allow for server-specific overrides.
     for server_name, server_config in pairs(servers) do
       server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
-      require('lspconfig')[server_name].setup(server_config)
+      vim.lsp.config(server_name, server_config)
     end
+    vim.lsp.enable(vim.tbl_keys(servers))
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
