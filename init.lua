@@ -85,8 +85,11 @@ vim.opt.inccommand = 'split'
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- sync buffers automatically
+-- sync buffers automatically (picks up external changes from Claude Code, etc.)
 vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+  command = "if mode() != 'c' | checktime | endif",
+})
 -- disable neovim generating a swapfile and showing the error
 vim.opt.swapfile = false
 
